@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindNavigation()
 
+
     }
 
     private fun bindNavigation() {

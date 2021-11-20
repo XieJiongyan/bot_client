@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.bot_client_v2.ui.log.LogFragment"
+        android:name="com.example.bot_client_v2.ui.log.LoggFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_log" />
 </navigation>
