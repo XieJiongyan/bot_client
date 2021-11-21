@@ -2,13 +2,11 @@ package com.example.bot_client_v2.ui.log
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.bot_client_v2.R
 import com.example.bot_client_v2.databinding.FragmentLoggBinding
 
-import com.example.bot_client_v2.ui.log.placeholder.PlaceholderContent.PlaceholderItem
+import com.example.bot_client_v2.ui.log.placeholder.LogContent.PlaceholderItem
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
