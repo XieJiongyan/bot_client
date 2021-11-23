@@ -45,4 +45,8 @@ class MySocket(val port: Int) {
             Log.i(TAG, "Error write: "+ e.toString())
         }
     }
+
+    fun isConnected(): Boolean {
+        return sc?.isConnected?:false
+    }
 }

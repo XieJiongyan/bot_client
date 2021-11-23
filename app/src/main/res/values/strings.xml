@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="main_connected">Connected!</string>
+    <string name="main_not_connected">Losing Connection from server…</string>
 </resources>

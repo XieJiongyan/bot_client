@@ -3,12 +3,14 @@ package com.example.bot_client_v2
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bot_client_v2.databinding.ActivityMainBinding
 import com.example.bot_client_v2.source.NetClock
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindNavigation()
 
-        NetClock.autoLogin()
+        NetClock.autoLogin(this)
     }
 
     private fun bindNavigation() {
@@ -40,5 +42,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    public fun changeLoginText(isConnected: Boolean) {
+        if (isConnected) {
+            main_login_text.text = getText(R.string.main_connected)
+            main_login_text.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+        } else {
+            main_login_text.text = getText(R.string.main_not_connected)
+            main_login_text.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+        }
     }
 }
