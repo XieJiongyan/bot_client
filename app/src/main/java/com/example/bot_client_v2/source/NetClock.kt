@@ -1,30 +1,33 @@
 package com.example.bot_client_v2.source
 
-import android.content.Context
 import android.util.Log
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.bot_client_v2.MainActivity
 import com.example.bot_client_v2.ui.log.placeholder.LogContent
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.produce
-import kotlinx.coroutines.selects.select
-import java.io.File
-import java.io.InputStream
 import java.lang.Exception
+import java.time.LocalDateTime
 
 object NetClock {
     private val mySocket: MySocket = MySocket(8100)
     private val TAG: String = "Jog.NetClock"
     private var mainActivity: MainActivity? = null
+    private var lastReceiveNetTime: LocalDateTime = LocalDateTime.now()
 
     private fun establishConnect() {
         mySocket.establish_connection()
     }
-    private fun listen() {
+    private suspend fun listen() {
         while(true) {
-            val inputString: String = mySocket.read()
+            val inputString: String? = mySocket.read()
+            if (inputString == null) {
+                delay(500L)
+                continue
+            }
             LogContent.addLog(TAG, "Receive: " + inputString)
+            lastReceiveNetTime = LocalDateTime.now()
+            withContext(Dispatchers.Main) {
+                mainActivity?.changeLoginText(true)
+            }
         }
     }
     private fun login() {
@@ -58,9 +61,13 @@ object NetClock {
 
 
     private suspend fun showIsConnected() {
-        delay(5000)
-        withContext(Dispatchers.Main) {
-            mainActivity?.changeLoginText(mySocket.isConnected())
+        while (true) {
+            delay(5000L)
+            if (LocalDateTime.now().minusSeconds(5L).isAfter(lastReceiveNetTime)) {
+                withContext(Dispatchers.Main) {
+                    mainActivity?.changeLoginText(false)
+                }
+            }
         }
     }
 }

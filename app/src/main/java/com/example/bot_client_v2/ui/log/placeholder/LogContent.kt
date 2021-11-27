@@ -43,9 +43,7 @@ object LogContent {
         try {
             mRecyclerView?.post {
                 myItemRecyclerViewAdapter?.notifyItemInserted(ITEMS.size)
-                CoroutineScope(Dispatchers.Main).launch {
-                    mRecyclerView?.scrollToPosition(ITEMS.size - 1)
-                }
+                mRecyclerView?.scrollToPosition(ITEMS.size - 1)
             }
         } catch (e: Exception) {
             Log.i(TAG, e.toString())

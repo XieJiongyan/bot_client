@@ -28,13 +28,13 @@ class MySocket(val port: Int) {
         }
     }
 
-    fun read(): String{
+    fun read(): String?{
         try {
             return bufferedReader!!.readLine()
         } catch (e: Exception) {
             Log.i(TAG, "Error read: " + e.toString())
         }
-        return ""
+        return null
     }
 
     fun write(bytes: ByteArray) {

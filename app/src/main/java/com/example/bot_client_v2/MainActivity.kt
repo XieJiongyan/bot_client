@@ -44,7 +44,10 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    public fun changeLoginText(isConnected: Boolean) {
+    private var _isConnected: Boolean = false
+    fun changeLoginText(isConnected: Boolean) {
+        if (isConnected == _isConnected) return
+        _isConnected = isConnected
         if (isConnected) {
             main_login_text.text = getText(R.string.main_connected)
             main_login_text.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
