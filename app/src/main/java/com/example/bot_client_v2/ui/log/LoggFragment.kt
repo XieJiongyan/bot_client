@@ -31,7 +31,7 @@ class LoggFragment : Fragment() {
         view.let {
             it.layoutManager = LinearLayoutManager(context)
             LogContent.addLog(TAG, "init logFragment.onCreateView")
-            it.adapter = MyItemRecyclerViewAdapter(LogContent.ITEMS)
+            LogContent.setRecyclerView(it)
         }
         return view
     }
