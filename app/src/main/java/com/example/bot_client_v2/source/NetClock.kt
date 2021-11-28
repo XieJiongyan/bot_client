@@ -14,6 +14,7 @@ object NetClock {
     private var lastReceiveNetTime: LocalDateTime = LocalDateTime.now()
 
     private fun establishConnect() {
+        mySocket.setLoginFun { login() }
         mySocket.establish_connection()
     }
     private suspend fun listen() {
@@ -55,7 +56,6 @@ object NetClock {
         CoroutineScope(Dispatchers.IO).launch {
             listen()
         }
-        login()
         CoroutineScope(Dispatchers.IO).launch { showIsConnected() }
     }
 
