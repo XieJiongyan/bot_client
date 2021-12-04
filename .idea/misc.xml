@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/activity_main.xml" value="0.23958333333333334" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_account.xml" value="0.16489361702127658" />
+        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock.xml" value="0.6" />
+        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock_list.xml" value="0.13125" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_home.xml" value="0.16489361702127658" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_logg.xml" value="0.12228260869565218" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_logg_list.xml" value="0.12228260869565218" />
