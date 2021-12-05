@@ -1,19 +1,27 @@
 package com.example.bot_client_v2.ui.home
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.example.bot_client_v2.R
 import com.example.bot_client_v2.databinding.FragmentClockBinding
 
-import com.example.bot_client_v2.ui.home.placeholder.PlaceholderContent.PlaceholderItem
+import com.example.bot_client_v2.ui.home.placeholder.ClockContent.ClockItem
+import com.google.android.material.internal.ContextUtils.getActivity
 
 /**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
+ * [RecyclerView.Adapter] that can display a [ClockItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class ClockRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: List<ClockItem>,
+    private val buttonOnBackGround: Drawable,
+    private val buttonOffBackGround: Drawable
 ) : RecyclerView.Adapter<ClockRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,18 +38,30 @@ class ClockRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-//        holder.idView.text = item.id
-//        holder.contentView.text = item.content
+        holder.halftimeView.text = item.halfTime
+        holder.morningView.text = item.morningOrAfternoon
+        holder.commentView.text = item.comment
+        if (item.isActive) {
+            holder.buttonView.background = buttonOnBackGround
+        } else {
+            holder.buttonView.background = buttonOffBackGround
+        }
+        holder.buttonView.setOnClickListener {
+            values[position].isActive = !values[position].isActive
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: FragmentClockBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+        val halftimeView: TextView = binding.clockItemHalftime
+        val morningView: TextView = binding.clockItemMorning
+        val commentView: TextView = binding.clockItemComment
+        val buttonView: ImageButton = binding.clockItemButton
 
         override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+            return super.toString() + " '" + morningView.text + "'"
         }
     }
 
