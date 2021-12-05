@@ -26,25 +26,33 @@
         android:layout_marginBottom="4dp"
         android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintLeft_toRightOf="@id/item_number"
-        app:layout_constraintBottom_toTopOf="@id/clock_item_comment"/>
+        app:layout_constraintBaseline_toBaselineOf="@id/item_number"/>
+
+
     <TextView
         android:id="@+id/clock_item_comment"
-        android:text="法定工作日 | 1天后响铃"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Bot1 | 法定工作日 | 1天后响铃"
+        android:gravity="start"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/item_number"
+        app:layout_constraintEnd_toStartOf="@id/clock_item_button"
         app:layout_constraintTop_toBottomOf="@id/item_number"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+         />
 
     <ImageButton
         android:id="@+id/clock_item_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_clock_button_on"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/clock_item_comment"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
