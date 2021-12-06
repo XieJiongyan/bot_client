@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/clock_item_comment"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Bot1 | 法定工作日 | 1天后响铃"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="@id/clock_item_halftime"
         app:layout_constraintEnd_toStartOf="@id/clock_item_button"
         app:layout_constraintTop_toBottomOf="@id/clock_item_halftime"
-        app:layout_constraintWidth_default="wrap"
+        app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
          />
 

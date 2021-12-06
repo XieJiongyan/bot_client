@@ -1,10 +1,15 @@
 package com.example.bot_client_v2.source
 
+import android.renderscript.ScriptGroup
 import android.util.Log
 import com.example.bot_client_v2.ui.log.placeholder.LogContent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ChannelResult
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.io.*
 import java.lang.Exception
 import java.net.Socket
@@ -98,5 +103,29 @@ class MySocket(val port: Int) {
         } catch(e: Exception) {
             Log.i(TAG, "Error reConnect: " + e.toString())
         }
+    }
+
+    interface Extra {
+    }
+    @Serializable
+    data class InputStruct(
+        val command: String,
+        val options: Array<String>,
+        val extras: String
+    )
+
+    fun ww() {
+        val inputStruct = InputStruct("clock", arrayOf("get"), "")
+        writeStruct(inputStruct)
+    }
+    fun writeStruct(inputStruct: InputStruct) {
+        try {
+            val str: String = Json.encodeToString(inputStruct)
+            LogContent.addLog(TAG, "Write to Socket: $str")
+            write(str.toByteArray())
+        } catch (e: Exception) {
+            Log.i(TAG, e.toString())
+        }
+
     }
 }

@@ -52,7 +52,10 @@ object NetClock {
     }
     fun autoLogin(__mainActivity: MainActivity) = CoroutineScope(Dispatchers.IO).launch{
         mainActivity = __mainActivity
+
         establishConnect()
+        mySocket.ww()
+
         CoroutineScope(Dispatchers.IO).launch {
             listen()
         }
@@ -70,4 +73,5 @@ object NetClock {
             }
         }
     }
+
 }
