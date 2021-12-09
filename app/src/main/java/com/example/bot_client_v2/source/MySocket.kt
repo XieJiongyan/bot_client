@@ -1,13 +1,11 @@
 package com.example.bot_client_v2.source
 
-import android.renderscript.ScriptGroup
 import android.util.Log
 import com.example.bot_client_v2.ui.log.placeholder.LogContent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ChannelResult
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.*
@@ -57,9 +55,11 @@ class MySocket(val port: Int) {
         }
     }
 
-    suspend fun read(): String?{
+    suspend fun read(): NetStruct?{
+        val json = Json { coerceInputValues = true }
         try {
-            return bufferedReader!!.readLine()
+            val input = bufferedReader!!.readLine()
+            return Json.decodeFromString<NetStruct>(input)
         } catch (e: Exception) {
             LogContent.addLog(TAG, "Error read: " + e.toString())
             reConnect()
@@ -72,7 +72,7 @@ class MySocket(val port: Int) {
             outputStream!!.write(bytes)
             outputStream!!.flush()
         } catch (e: Exception) {
-            LogContent.addLog(TAG, "Error write: "+ e.toString())
+            LogContent.addLog(TAG, "Error write: $e")
             CoroutineScope(Dispatchers.IO).launch {
                 reConnect()
                 write(bytes)
@@ -105,20 +105,29 @@ class MySocket(val port: Int) {
         }
     }
 
-    interface Extra {
-    }
     @Serializable
-    data class InputStruct(
+    data class NetStruct(
         val command: String,
-        val options: Array<String>,
-        val extras: String
-    )
+        val options: Array<String>?,
+        val extras: String?
+    ) {
+        override fun toString(): String {
+            var rev = "$command: "
+            if (options != null) {
+                for (s in options ) {
+                    rev += "$s, "
+                }
+            }
+            rev += extras?:""
+            return rev
+        }
+    }
 
     fun ww() {
-        val inputStruct = InputStruct("clock", arrayOf("get"), "")
+        val inputStruct = NetStruct("clock", arrayOf("get"), "")
         writeStruct(inputStruct)
     }
-    fun writeStruct(inputStruct: InputStruct) {
+    fun writeStruct(inputStruct: NetStruct) {
         try {
             val str: String = Json.encodeToString(inputStruct)
             LogContent.addLog(TAG, "Write to Socket: $str")

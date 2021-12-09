@@ -19,12 +19,12 @@ object NetClock {
     }
     private suspend fun listen() {
         while(true) {
-            val inputString: String? = mySocket.read()
-            if (inputString == null) {
-                delay(500L)
+            val inputStruct: MySocket.NetStruct? = mySocket.read()
+            if (inputStruct == null) {
+                delay(5000L)
                 continue
             }
-            LogContent.addLog(TAG, "Receive: " + inputString)
+            LogContent.addLog(TAG, "Receive: $inputStruct")
             lastReceiveNetTime = LocalDateTime.now()
             withContext(Dispatchers.Main) {
                 mainActivity?.changeLoginText(true)
