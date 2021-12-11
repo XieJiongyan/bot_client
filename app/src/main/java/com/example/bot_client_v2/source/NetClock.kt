@@ -34,20 +34,9 @@ object NetClock {
             }
             withContext(Dispatchers.Default) {
                 when(inputStruct.command) {
-                    "clock" -> updateClockInfo(inputStruct)
+                    "clock" -> ClockContent.updateClockInfo(inputStruct)
                 }
             }
-        }
-    }
-    private fun updateClockInfo(inputStruct: MySocket.NetStruct) {
-        try {
-            if (inputStruct.options?.get(0) == "total") {
-                val clientClocks: ClockContent.ClientClocks =
-                    inputStruct.extras?.let { Json.decodeFromString<ClockContent.ClientClocks>(it) }!!
-                LogContent.addLog(TAG, "get clientClocks: $clientClocks")
-            }
-        } catch (e: Exception) {
-            Log.i(TAG, "Error updateClockInfo: $e")
         }
     }
     private fun login() {

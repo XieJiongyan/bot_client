@@ -45,11 +45,13 @@ class ClockFragment : Fragment() {
                 val buttonOnDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_on)
                 val buttonOffDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_off)
                 try {
-                    adapter = ClockRecyclerViewAdapter(
+                    val cAdapter = ClockRecyclerViewAdapter(
                         ClockContent.SHOW_ITEMS,
                         buttonOnDrawable!!,
                         buttonOffDrawable!!
                     )
+                    adapter = cAdapter
+                    ClockContent.setRecyclerViewAdapter(cAdapter)
                 } catch (e: Exception) {
                     Log.i(TAG, "error find drawable" + e.toString())
                 }
