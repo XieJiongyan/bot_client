@@ -1,25 +1,21 @@
 package com.example.bot_client_v2.ui.home
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import com.example.bot_client_v2.R
 import com.example.bot_client_v2.databinding.FragmentClockBinding
 
-import com.example.bot_client_v2.ui.home.placeholder.ClockContent.ClockItem
-import com.google.android.material.internal.ContextUtils.getActivity
+import com.example.bot_client_v2.ui.home.placeholder.ClockContent.ClockShowItem
 
 /**
- * [RecyclerView.Adapter] that can display a [ClockItem].
+ * [RecyclerView.Adapter] that can display a [ClockShowItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class ClockRecyclerViewAdapter(
-    private val values: List<ClockItem>,
+    private val values: List<ClockShowItem>,
     private val buttonOnBackGround: Drawable,
     private val buttonOffBackGround: Drawable
 ) : RecyclerView.Adapter<ClockRecyclerViewAdapter.ViewHolder>() {

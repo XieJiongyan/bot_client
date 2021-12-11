@@ -46,7 +46,7 @@ class ClockFragment : Fragment() {
                 val buttonOffDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_off)
                 try {
                     adapter = ClockRecyclerViewAdapter(
-                        ClockContent.ITEMS,
+                        ClockContent.SHOW_ITEMS,
                         buttonOnDrawable!!,
                         buttonOffDrawable!!
                     )

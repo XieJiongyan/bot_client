@@ -2,14 +2,17 @@ package com.example.bot_client_v2.source
 
 import android.util.Log
 import com.example.bot_client_v2.MainActivity
+import com.example.bot_client_v2.ui.home.placeholder.ClockContent
 import com.example.bot_client_v2.ui.log.placeholder.LogContent
 import kotlinx.coroutines.*
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.lang.Exception
 import java.time.LocalDateTime
 
 object NetClock {
     private val mySocket: MySocket = MySocket(8100)
-    private val TAG: String = "Jog.NetClock"
+    private const val TAG: String = "Jog.NetClock"
     private var mainActivity: MainActivity? = null
     private var lastReceiveNetTime: LocalDateTime = LocalDateTime.now()
 
@@ -29,6 +32,22 @@ object NetClock {
             withContext(Dispatchers.Main) {
                 mainActivity?.changeLoginText(true)
             }
+            withContext(Dispatchers.Default) {
+                when(inputStruct.command) {
+                    "clock" -> updateClockInfo(inputStruct)
+                }
+            }
+        }
+    }
+    private fun updateClockInfo(inputStruct: MySocket.NetStruct) {
+        try {
+            if (inputStruct.options?.get(0) == "total") {
+                val clientClocks: ClockContent.ClientClocks =
+                    inputStruct.extras?.let { Json.decodeFromString<ClockContent.ClientClocks>(it) }!!
+                LogContent.addLog(TAG, "get clientClocks: $clientClocks")
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "Error updateClockInfo: $e")
         }
     }
     private fun login() {
