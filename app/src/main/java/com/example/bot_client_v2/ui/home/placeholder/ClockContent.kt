@@ -97,11 +97,15 @@ object ClockContent {
         }
     }
 
+    @Serializable
+    data class ClientData(
+        val devices: Map<String, DeviceData>
+    )
     fun updateClockInfo(inputStruct: MySocket.NetStruct) {
      try {
          if (inputStruct.options?.get(0) == "total") {
-             val clientData: Map<String, DeviceData> =
-                 inputStruct.extras?.let { Json.decodeFromString<Map<String, DeviceData>>(it) }!!
+             val clientData: ClientData =
+                 inputStruct.extras?.let { Json.decodeFromString<ClientData>(it) }!!
              LogContent.addLog(TAG, "get clientClocks: $clientData")
              CoroutineScope(Dispatchers.Default).launch {
                  setItems(clientData)
@@ -113,9 +117,9 @@ object ClockContent {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private suspend fun setItems(clientData: Map<String, DeviceData>) {
+    private suspend fun setItems(clientData: ClientData) {
         SHOW_ITEMS.clear()
-        for (device in clientData) {
+        for (device in clientData.devices) {
             val deviceData: DeviceData = device.value
             for (clock in deviceData.clocks) {
                 val s: KronSchedulerTz = createSimpleScheduler(clock.cron, 8 * 60)
