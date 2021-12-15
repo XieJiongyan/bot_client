@@ -82,4 +82,7 @@ object NetClock {
         }
     }
 
+    init {
+        ClockContent.mySocket = mySocket
+    }
 }

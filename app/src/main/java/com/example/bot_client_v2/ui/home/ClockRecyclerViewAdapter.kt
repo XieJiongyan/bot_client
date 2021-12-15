@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.bot_client_v2.databinding.FragmentClockBinding
+import com.example.bot_client_v2.ui.home.placeholder.ClockContent
 
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent.ClockShowItem
 
@@ -43,8 +44,7 @@ class ClockRecyclerViewAdapter(
             holder.buttonView.background = buttonOffBackGround
         }
         holder.buttonView.setOnClickListener {
-            values[position].isActive = !values[position].isActive
-            notifyItemChanged(position)
+            ClockContent.switchActive(position)
         }
     }
 

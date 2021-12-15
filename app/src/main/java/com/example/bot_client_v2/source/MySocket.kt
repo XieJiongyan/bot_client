@@ -101,7 +101,7 @@ class MySocket(val port: Int) {
                 waitingChan.send(true)
             }
         } catch(e: Exception) {
-            Log.i(TAG, "Error reConnect: " + e.toString())
+            Log.i(TAG, "Error reConnect: $e")
         }
     }
 
