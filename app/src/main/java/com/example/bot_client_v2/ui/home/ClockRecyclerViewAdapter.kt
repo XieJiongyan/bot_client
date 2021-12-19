@@ -1,5 +1,6 @@
 package com.example.bot_client_v2.ui.home
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.text.Layout
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.example.bot_client_v2.databinding.FragmentClockBinding
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent
@@ -53,7 +55,9 @@ class ClockRecyclerViewAdapter(
             ClockContent.switchActive(position)
         }
         holder.clockItem.setOnClickListener {
-            LogContent.addLog(TAG, "click $position")
+            LogContent.addLog(TAG, "click $position clock, ready to start intent")
+            val intent = Intent(holder.clockItem.context, ClockDetailActivity()::class.java)
+            holder.clockItem.context.startActivity(intent)
         }
     }
 

@@ -53,7 +53,7 @@ class ClockFragment : Fragment() {
                     adapter = cAdapter
                     ClockContent.setRecyclerViewAdapter(cAdapter)
                 } catch (e: Exception) {
-                    Log.i(TAG, "error find drawable" + e.toString())
+                    Log.i(TAG, "error find drawable $e")
                 }
             }
         }
