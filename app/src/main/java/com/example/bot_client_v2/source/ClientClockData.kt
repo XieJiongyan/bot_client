@@ -19,19 +19,30 @@ data class DeviceData(
 data class ClientClockData(
     val devices: Map<String, DeviceData>
 ) {
-    fun deleteItem(deviceId: String, clockPlace: Int) {
-        devices[deviceId]?.clocks?.removeAt(clockPlace)
+    fun deleteItem(deviceId: String, clockIndex: Int) {
+        devices[deviceId]?.clocks?.removeAt(clockIndex)
     }
 
     fun addItem(deviceId: String, clockItemData: ClockItemData) {
         devices[deviceId]?.clocks?.add(clockItemData)
     }
 
-    fun setItem(deviceId: String, clockPlace: Int, clockItemData: ClockItemData) {
-        devices[deviceId]?.clocks?.set(clockPlace, clockItemData)
+    fun setItem(deviceId: String, clockIndex: Int, clockItemData: ClockItemData) {
+        devices[deviceId]?.clocks?.set(clockIndex, clockItemData)
     }
 
-    fun get(deviceId: String, clockPlace: Int): ClockItemData?{
-        return devices[deviceId]?.clocks?.get(clockPlace)
+    fun get(deviceId: String, clockIndex: Int): ClockItemData?{
+        return devices[deviceId]?.clocks?.get(clockIndex)
     }
+
+    fun getBots(): Array<String> {
+        val rev: Array<String> = Array<String>(devices.size) {""}
+        var i: Int = 0
+        devices.forEach {
+            rev[i] = it.value.name
+            i++
+        }
+        return rev
+    }
+
 }

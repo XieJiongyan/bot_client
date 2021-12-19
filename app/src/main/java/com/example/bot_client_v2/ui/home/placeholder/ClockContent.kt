@@ -41,7 +41,7 @@ object ClockContent {
             var isActive: Boolean,
             var ts: Long,
             var deviceId: String,
-            var clockPlace: Int) {
+            var clockIndex: Int) {
         override fun toString(): String = halfTime + " " + morningOrAfternoon + " " +
                 comment + " " + isActive.toString()
     }
@@ -128,7 +128,7 @@ object ClockContent {
 
     fun switchActive(position: Int) {
         val deviceId: String = SHOW_ITEMS[position].deviceId
-        val clockPlace: Int = SHOW_ITEMS[position].clockPlace
+        val clockPlace: Int = SHOW_ITEMS[position].clockIndex
 
         val clockItemData: ClockItemData? = data?.get(deviceId, clockPlace)
         clockItemData?.let {

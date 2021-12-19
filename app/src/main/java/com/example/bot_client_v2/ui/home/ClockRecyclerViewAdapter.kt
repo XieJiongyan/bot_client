@@ -2,16 +2,12 @@ package com.example.bot_client_v2.ui.home
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.text.Layout
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.Fragment
 import com.example.bot_client_v2.databinding.FragmentClockBinding
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent
 
@@ -28,7 +24,7 @@ class ClockRecyclerViewAdapter(
     private val buttonOffBackGround: Drawable
 ) : RecyclerView.Adapter<ClockRecyclerViewAdapter.ViewHolder>() {
 
-    private val TAG: String = "Jog.ClockRecyclerViewAdapter"
+    private val tag: String = "Jog.ClockRecyclerViewAdapter"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
@@ -55,8 +51,11 @@ class ClockRecyclerViewAdapter(
             ClockContent.switchActive(position)
         }
         holder.clockItem.setOnClickListener {
-            LogContent.addLog(TAG, "click $position clock, ready to start intent")
-            val intent = Intent(holder.clockItem.context, ClockDetailActivity()::class.java)
+            LogContent.addLog(tag, "click $position clock, ready to start intent")
+            val intent = Intent(holder.clockItem.context, ClockDetailActivity()::class.java).also {
+                it.putExtra("isNew", false)
+                it.putExtra("clockIndex", position)
+            }
             holder.clockItem.context.startActivity(intent)
         }
     }
