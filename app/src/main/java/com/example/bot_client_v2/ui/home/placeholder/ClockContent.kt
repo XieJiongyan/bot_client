@@ -138,7 +138,7 @@ object ClockContent {
         refreshAndSync(data)
     }
 
-    private suspend fun syncToServer(clientData: ClientClockData) {
+    private fun syncToServer(clientData: ClientClockData) {
         val str = Json.encodeToString(clientData)
         val outputStruct = MySocket.NetStruct(
             command = "clock",

@@ -1,15 +1,20 @@
 package com.example.bot_client_v2.ui.home
 
 import android.graphics.drawable.Drawable
+import android.text.Layout
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.fragment.app.Fragment
 import com.example.bot_client_v2.databinding.FragmentClockBinding
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent
 
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent.ClockShowItem
+import com.example.bot_client_v2.ui.log.placeholder.LogContent
 
 /**
  * [RecyclerView.Adapter] that can display a [ClockShowItem].
@@ -21,6 +26,7 @@ class ClockRecyclerViewAdapter(
     private val buttonOffBackGround: Drawable
 ) : RecyclerView.Adapter<ClockRecyclerViewAdapter.ViewHolder>() {
 
+    private val TAG: String = "Jog.ClockRecyclerViewAdapter"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
@@ -46,6 +52,9 @@ class ClockRecyclerViewAdapter(
         holder.buttonView.setOnClickListener {
             ClockContent.switchActive(position)
         }
+        holder.clockItem.setOnClickListener {
+            LogContent.addLog(TAG, "click $position")
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -55,7 +64,7 @@ class ClockRecyclerViewAdapter(
         val morningView: TextView = binding.clockItemMorning
         val commentView: TextView = binding.clockItemComment
         val buttonView: ImageButton = binding.clockItemButton
-
+        val clockItem: View = binding.clockItem
         override fun toString(): String {
             return super.toString() + " '" + morningView.text + "'"
         }
