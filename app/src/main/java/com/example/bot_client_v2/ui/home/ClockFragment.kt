@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.bot_client_v2.R
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 /**
@@ -60,6 +63,12 @@ class ClockFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        CoroutineScope(Dispatchers.Main).launch {
+            ClockContent.data?.let { ClockContent.refreshAndSync(it) }
+        }
+    }
     companion object {
 
         // TODO: Customize parameter argument names

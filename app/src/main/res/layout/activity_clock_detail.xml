@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clock_detail_activity"
@@ -10,17 +10,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="#f5fffa"
     tools:context=".ui.home.ClockDetailActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clock_detail_reminder"
+        android:textSize="14sp"
+        android:layout_alignParentTop="true"/>
     <LinearLayout
+        android:id="@+id/clock_detail_bot_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="96dp">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/clock_bot"
             android:layout_weight="1"
             android:gravity="center"/>
@@ -32,59 +41,94 @@
             android:paddingVertical="5dp"
             android:layout_weight="2"/>
     </LinearLayout>
+
     <TextView
+        android:id="@+id/clock_detail_cron_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:text="@string/clock_detail_cron_tab"/>
+        android:layout_below="@id/clock_detail_bot_setting"
+        android:paddingTop="50dp"
+        android:gravity="center"
+        android:text="@string/clock_detail_cron_tab"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/clock_detail_cron"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_below="@id/clock_detail_cron_text"
         android:autofillHints="@string/clock_detail_cron"
         android:hint="@string/clock_detail_cron"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/clock_detail_text_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/clock_detail_cron"
+        android:paddingTop="50dp"
         android:textStyle="bold"
+        android:gravity="center"
         android:text="@string/clock_detail_text_tab"/>
     <EditText
         android:id="@+id/clock_detail_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/clock_detail_text_text"
         android:layout_marginTop="10dp"
         android:autofillHints="@string/clock_detail_text"
         android:hint="@string/clock_detail_text"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
-        android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/clock_detail_delete_button">
+        <Button
+            android:id="@+id/clock_detail_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#C0C0C0"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="5dp"
+            android:text="@string/cancel"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:id="@+id/clock_detail_confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#1e90ff"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginEnd="0dp"
+            android:text="@string/confirm"
+            style="?android:attr/buttonBarButtonStyle" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:id="@+id/clock_detail_delete_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
-        android:enabled="false"
-        android:text="@string/action_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
-    
-</LinearLayout>
+        android:layout_marginBottom="44dp"
+        android:background="#ff0000"
+        android:text="@string/clock_detail_delete"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

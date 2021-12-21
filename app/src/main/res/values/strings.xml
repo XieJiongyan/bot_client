@@ -6,11 +6,12 @@
     <string name="main_connected">Connected!</string>
     <string name="main_not_connected">Losing Connection from server…</string>
     <string name="clock_bot">设备</string>
+    <string name="clock_detail_reminder">⚠ 闹钟将于 … 响铃</string>
     <string name="clock_detail_cron">eg. "0 10 9 * *"（每日早九点十分）</string>
-    <string name="clock_detail_cron_tab">crontab</string>
+    <string name="clock_detail_cron_tab">Crontab</string>
     <string name="clock_detail_text">请输入文字</string>
     <string name="clock_detail_text_tab">文字内容</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="clock_detail_delete">Delete this Clock</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -19,4 +20,7 @@
     <string name="title_activity_clock_detail">ClockDetailActivity</string>
     <string name="prompt_email"> </string>
     <string name="prompt_password"> </string>
+    <string name="action_sign_in"> </string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
 </resources>

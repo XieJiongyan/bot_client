@@ -61,9 +61,9 @@ object ClockContent {
         }
     }
 
-    var refreshChan = Channel<Boolean>(1)
+    private var refreshChan = Channel<Boolean>(1)
     @SuppressLint("NotifyDataSetChanged")
-    private suspend fun refresh(clientData: ClientClockData) {
+    suspend private fun refresh(clientData: ClientClockData) {
         refreshChan.send(true)
         SHOW_ITEMS.clear()
         for (device in clientData.devices) {
@@ -147,7 +147,7 @@ object ClockContent {
         )
         mySocket?.writeStruct(outputStruct)
     }
-    private fun refreshAndSync(clientData: ClientClockData?) {
+    fun refreshAndSync(clientData: ClientClockData?) {
         clientData?.let {
             CoroutineScope(Dispatchers.Main).launch { refresh(it) }
             CoroutineScope(Dispatchers.IO).launch { syncToServer(it) }
