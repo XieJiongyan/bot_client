@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.bot_client_v2.ui.home.ClockFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_clock" />
+        tools:layout="@layout/fragment_clock_list" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

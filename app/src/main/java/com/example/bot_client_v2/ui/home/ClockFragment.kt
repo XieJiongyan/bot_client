@@ -38,26 +38,25 @@ class ClockFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_clock_list, container, false)
 
+        val recyclerView: RecyclerView = view.findViewById(R.id.list)
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                val buttonOnDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_on)
-                val buttonOffDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_off)
-                try {
-                    val cAdapter = ClockRecyclerViewAdapter(
-                        ClockContent.SHOW_ITEMS,
-                        buttonOnDrawable!!,
-                        buttonOffDrawable!!
-                    )
-                    adapter = cAdapter
-                    ClockContent.setRecyclerViewAdapter(cAdapter)
-                } catch (e: Exception) {
-                    Log.i(TAG, "error find drawable $e")
-                }
+        with(recyclerView) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
+            }
+            val buttonOnDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_on)
+            val buttonOffDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clock_button_off)
+            try {
+                val cAdapter = ClockRecyclerViewAdapter(
+                    ClockContent.SHOW_ITEMS,
+                    buttonOnDrawable!!,
+                    buttonOffDrawable!!
+                )
+                adapter = cAdapter
+                ClockContent.setRecyclerViewAdapter(cAdapter)
+            } catch (e: Exception) {
+                Log.i(TAG, "error find drawable $e")
             }
         }
         return view
@@ -65,9 +64,7 @@ class ClockFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        CoroutineScope(Dispatchers.Main).launch {
-            ClockContent.data?.let { ClockContent.refreshAndSync(it) }
-        }
+        ClockContent.data?.let { ClockContent.refreshAndSync(it) }
     }
     companion object {
 
