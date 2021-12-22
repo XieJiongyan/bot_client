@@ -10,14 +10,14 @@
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.159375" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout-w1240dp/activity_clock_detail.xml" value="0.1" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout-w936dp/activity_clock_detail.xml" value="0.10234375" />
-        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/activity_add.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/activity_add.xml" value="1.0" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/activity_clock_detail.xml" value="0.5" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/activity_main.xml" value="0.23958333333333334" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/content_add.xml" value="0.3333333333333333" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_account.xml" value="0.16489361702127658" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock.xml" value="0.4466666666666667" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock_detail.xml" value="0.4466666666666667" />
-        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock_list.xml" value="0.13125" />
+        <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_clock_list.xml" value="0.4466666666666667" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_first.xml" value="0.13229166666666667" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_home.xml" value="0.16489361702127658" />
         <entry key="..\:/Projects/Bot_client_v2/app/src/main/res/layout/fragment_logg.xml" value="0.12228260869565218" />

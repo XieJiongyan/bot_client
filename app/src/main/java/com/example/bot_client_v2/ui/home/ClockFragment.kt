@@ -1,5 +1,6 @@
 package com.example.bot_client_v2.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import com.example.bot_client_v2.R
 import com.example.bot_client_v2.ui.home.placeholder.ClockContent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.lang.Exception
 
 /**
@@ -58,6 +58,19 @@ class ClockFragment : Fragment() {
             } catch (e: Exception) {
                 Log.i(TAG, "error find drawable $e")
             }
+        }
+
+        val fab: FloatingActionButton = view.findViewById(R.id.fab)
+        try {
+            fab.setOnClickListener {
+                val intent = Intent(context, ClockDetailActivity()::class.java).also {
+                    it.putExtra("isNew", true)
+                    it.putExtra("clockIndex", 0)
+                }
+                context?.startActivity(intent)
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "error set listener: $e")
         }
         return view
     }
