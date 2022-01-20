@@ -14,6 +14,7 @@
     tools:context=".ui.home.ClockDetailActivity">
 
     <TextView
+        android:id="@+id/clock_detail_next_alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/clock_detail_reminder"
